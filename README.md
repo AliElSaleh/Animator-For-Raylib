@@ -20,7 +20,6 @@ Here is what you need to have set up to get started using AnimatorForRaylib.
 
 ## How to Use
 
-.cpp File
 ```cpp
 #include <raylib.h>
 #include "Animator.h"
@@ -64,6 +63,7 @@ int main()
   return 0;
 }
 ```
+Build and run the application.
 
 ## Result
 ![](AnimatorDemo.gif)
