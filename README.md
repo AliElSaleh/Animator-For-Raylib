@@ -11,7 +11,7 @@ Here is what you need to have set up to get started using AnimatorForRaylib.
 ### Steps
 1. Download the latest release from the 'Releases' tab.
 2. Extract the zip file and place the extracted folder in your Visual Studio Solution directory.
-3. Open your VS Solution
+3. Open your VS Solution.
 4. Right click on your project, go to Properties.
 5. Go to C/C++ > General, add `$(SolutionDir)AnimatorForRaylib\Include;` in 'Additional Include Directories'.
 6. Go to Linker > General, add `$(SolutionDir)AnimatorForRaylib\Library\$(PlatformTarget)\$(Configuration)\;` in 'Additional Library Directories'.
