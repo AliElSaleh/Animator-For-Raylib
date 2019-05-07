@@ -203,7 +203,7 @@ public:
 	/// <param name="NumOfFramesPerRow">The amount of frames/columns in a row.</param>
 	/// <param name="NumOfRows">The amount of rows in the sprite sheet.</param>
 	/// <param name="Speed">The animation speed in frames per second.</param>
-	/// <param name="bPlayInReverse">Should the animator play the new sprite in reverse play mode?</param>
+	/// <param name="bPlayInReverse">Should the animator play the sprite in reverse play mode?</param>
 	/// <param name="bContinuous">Should the animator automatically go to the next row in the sprite sheet?</param>
 	/// <param name="bLooping">Should the animator loop indefinitely?</param>
 	Animator(const char* AnimatorName, unsigned int NumOfFramesPerRow, unsigned int NumOfRows, unsigned int Speed, bool bPlayInReverse = false, bool bContinuous = false, bool bLooping = true);
@@ -319,13 +319,13 @@ public:
 	/// <returns>The current column the animator is on. (Zero based)</returns>
 	unsigned int GetCurrentColumn() const;
 
-	/// <returns>The total time it will take to finish in frames.</returns>
+	/// <returns>The total time animation will take to finish in frames.</returns>
 	unsigned int GetTotalTimeInFrames() const;
 
 	/// <returns>The time remaining in frames.</returns>
 	unsigned int GetTimeRemainingInFrames() const;
 
-	/// <returns>The total time it will take to finish in seconds.</returns>
+	/// <returns>The total time animation will take to finish in seconds.</returns>
 	float GetTotalTimeInSeconds() const;
 
 	/// <returns>The time remaining in seconds.</returns>
