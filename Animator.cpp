@@ -19,8 +19,6 @@ Animator::Animator(const char* AnimatorName, const unsigned int NumOfFramesPerRo
 	bFlipV = false;
 }
 
-Animator::~Animator() = default;
-
 void Animator::AssignSprite(const Texture2D& Sprite)
 {
 	this->Sprite = Sprite;
@@ -28,7 +26,7 @@ void Animator::AssignSprite(const Texture2D& Sprite)
 	Restart();
 }
 
-void Animator::ChangeSprite(const Texture2D& NewSprite, const unsigned int NumOfFramesPerRow, const unsigned int NumOfRows, const unsigned int Speed, const float DelayInSeconds, const bool bContinuous, const bool bLooping)
+void Animator::ChangeSprite(const Texture2D& NewSprite, const unsigned int NumOfFramesPerRow, const unsigned int NumOfRows, const unsigned int Speed, const float DelayInSeconds, const bool bPlayInReverse, const bool bContinuous, const bool bLooping)
 {
 	DelayFramesCounter++;
 
@@ -41,9 +39,11 @@ void Animator::ChangeSprite(const Texture2D& NewSprite, const unsigned int NumOf
 			Framerate = Speed;
 			bCanLoop = bLooping;
 			this->bContinuous = bContinuous;
+			bReverse = bPlayInReverse;
 			PlaybackPosition = 0;
 			DelayFramesCounter = 0;
 			bIsAnimationFinished = false;
+			bHasStartedPlaying = !bPaused;
 
 			AssignSprite(NewSprite);
 		}
@@ -442,6 +442,7 @@ void Animator::Restart()
 {
 	ResetFrameRec();
 	ResetTimer();
+	bHasStartedPlaying = true;
 }
 
 unsigned Animator::GetTotalFrames() const
@@ -537,12 +538,16 @@ void Animator::Play()
 			FrameRec.x = float(CurrentFrame)*FrameWidth;
 
 		//printf("Row: %u, Column: %u\n", CurrentRow, CurrentColumn);
+		bHasStartedPlaying = false;
 	}
 }
 
 void Animator::Start()
 {
 	UnPause();
+
+	if (!bHasStartedPlaying)
+		bHasStartedPlaying = true;
 }
 
 void Animator::Stop()
@@ -551,6 +556,8 @@ void Animator::Stop()
 	CurrentColumn = 0;
 	CurrentFrame = 0;
 	CurrentRow = 0;
+	bHasStartedPlaying = true;
+	bIsAnimationFinished = true;
 
 	ResetFrameRec();
 	ResetTimer();
@@ -560,14 +567,21 @@ void Animator::Stop()
 void Animator::UnPause()
 {
 	bPaused = false;
+	bHasStartedPlaying = true;
 }
 
 void Animator::Pause(const bool bToggle)
 {
 	if (bToggle)
+	{
 		bPaused = !bPaused;
+		bHasStartedPlaying = !bPaused;
+	}
 	else
+	{
 		bPaused = true;
+		bHasStartedPlaying = false;
+	}
 }
 
 void Animator::SetFramerate(const unsigned int NewFramerate)
@@ -661,7 +675,7 @@ bool Animator::IsStartedPlaying()
 		return true;
 	}
 
-	return false;
+	return bHasStartedPlaying;
 }
 
 bool Animator::IsFinishedPlaying()
@@ -672,7 +686,10 @@ bool Animator::IsFinishedPlaying()
 		return true;
 	}
 
-	return false;
+	if (!bCanLoop)
+		return bIsAnimationFinished;
+
+	return bIsAnimationFinished;
 }
 
 bool Animator::IsPlaying() const
