@@ -213,7 +213,7 @@ public:
 	/// <param name="Sprite">The sprite the animator will use.</param>
 	void AssignSprite(const Texture2D& Sprite);
 
-	/// <param name="NewSprite">The new sprite the animator will change to. Will reset to begining frame.</param>
+	/// <param name="NewSprite">The new sprite the animator will change to. Will reset to beginning frame.</param>
 	/// <param name="NumOfFramesPerRow">The amount of frames/columns in a row.</param>
 	/// <param name="NumOfRows">The amount of rows in the sprite sheet.</param>
 	/// <param name="Speed">The animation speed in frames per second.</param>
@@ -298,7 +298,7 @@ public:
 	/// <param name="bToggle">If true, flip-flop between reversing and un-reversing the play mode every time when called. If false, reverse the play mode. You need to call Forward to un-reverse.</param>
 	void Reverse(bool bToggle = false);
 	
-	/// Restart the animation from the begining.
+	/// Restart the animation from the beginning.
 	void Restart();
 
 	/// <returns>The total amount of frames in the sprite-sheet.</returns>
@@ -407,7 +407,7 @@ private:
 	/// Jumps to the previous frame in the sprite-sheet.
 	void PreviousFrame();
 
-	/// Sprite width / Total columns perrow
+	/// Sprite width / Total columns per row
 	float FrameWidth{};
 
 	/// Sprite height / Total rows
@@ -416,7 +416,7 @@ private:
 	/// Used for timing.
 	float TimeRemainingFramesCounter{};
 
-	/// Used for quering how many frames have passed.
+	/// Used for querying how many frames have passed.
 	unsigned int PlaybackPosition;
 
 	/// Used for changing sprite if the delay parameter is used in ChangeSprite() function.
