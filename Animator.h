@@ -199,6 +199,7 @@
 class Animator
 {
 public:
+	/// <summary>Creates an animator instance.</summary>
 	/// <param name="AnimatorName">A name the animator will be identified by.</param>
 	/// <param name="NumOfFramesPerRow">The amount of frames/columns in a row.</param>
 	/// <param name="NumOfRows">The amount of rows in the sprite sheet.</param>
@@ -210,9 +211,11 @@ public:
 
 	~Animator() = default;
 
+	/// <summary>Assigns a sprite for the animator to use. (This should be called once)</summary>
 	/// <param name="Sprite">The sprite the animator will use.</param>
 	void AssignSprite(const Texture2D& Sprite);
 
+	/// <summary>Changes the sprite the animator is using.</summary>
 	/// <param name="NewSprite">The new sprite the animator will change to. Will reset to beginning frame.</param>
 	/// <param name="NumOfFramesPerRow">The amount of frames/columns in a row.</param>
 	/// <param name="NumOfRows">The amount of rows in the sprite sheet.</param>
@@ -223,26 +226,33 @@ public:
 	/// <param name="bLooping">Should the animator loop indefinitely?</param>
 	void ChangeSprite(const Texture2D& NewSprite, unsigned int NumOfFramesPerRow, unsigned int NumOfRows, unsigned int Speed, float DelayInSeconds = 0.0f, bool bPlayInReverse = false, bool bContinuous = false, bool bLooping = true);
 
+	/// <summary>Flips the sprite-sheet horizontally or vertically, or both.</summary>
 	/// <param name="bHorizontalFlip">Flips the sprite sheet horizontally. DOES NOT WORK, set this to false.</param>
 	/// <param name="bVerticalFlip">Flips the sprite sheet Vertically.</param>
 	void FlipSprite(bool bHorizontalFlip, bool bVerticalFlip = true);
 	
-	/// <param name="bLooping">Set whether the animator should loop or not.</param>
+	/// <summary>Set whether the animator should loop or not.</summary>
+	/// <param name="bLooping">Should the animator loop?</param>
 	void SetLooping(bool bLooping);
 
-	/// <param name="bIsContinuous">Set whether the animator should go to the next row in the sprite sheet or not.</param>
+	/// <summary>Set whether the animator should go to the next row in the sprite sheet or not.</summary>
+	/// <param name="bIsContinuous">Should the animator continue to the next row?</param>
 	void SetContinuous(bool bIsContinuous);
 
-	/// <param name="NewFramerate">Set a new framerate the animator will use.</param>
+	/// <summary>Set a new framerate the animator will use.</summary>
+	/// <param name="NewFramerate">The new speed of animation.</param>
 	void SetFramerate(unsigned int NewFramerate);
 
-	/// <param name="FrameNumber">Jump to a frame number in the sprite sheet. (Zero-based)</param>
+	/// <summary>Jump to a frame in the sprite-sheet.</summary>
+	/// <param name="FrameNumber">The frame number in the sprite sheet. (Zero-based)</param>
 	void GoToFrame(unsigned int FrameNumber);
 
-	/// <param name="RowNumber">Jump to a row number in the sprite sheet. (Zero-based)</param>
+	/// <summary>Jump to a row in the sprite-sheet.</summary>
+	/// <param name="RowNumber">The row number in the sprite sheet. (Zero-based)</param>
 	void GoToRow(unsigned int RowNumber);
 
-	/// <param name="ColumnNumber">Jump to a column number in the sprite sheet. (Zero-based)</param>
+	/// <summary>Jump to a column in the current row.</summary>
+	/// <param name="ColumnNumber">The column number in the sprite sheet. (Zero-based)</param>
 	void GoToColumn(unsigned int ColumnNumber);
 
 	/// Jump to the first row.
