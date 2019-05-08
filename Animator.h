@@ -228,7 +228,7 @@ public:
 
 	/// <summary>Flips the sprite-sheet horizontally or vertically, or both.</summary>
 	/// <param name="bHorizontalFlip">Flips the sprite sheet horizontally. DOES NOT WORK, set this to false.</param>
-	/// <param name="bVerticalFlip">Flips the sprite sheet Vertically.</param>
+	/// <param name="bVerticalFlip">Flips the sprite sheet vertically.</param>
 	void FlipSprite(bool bHorizontalFlip, bool bVerticalFlip = true);
 	
 	/// <summary>Set whether the animator should loop or not.</summary>
@@ -359,11 +359,11 @@ public:
 	/// <returns>If the animator is on the column number specified, true. Otherwise, false.</returns>
 	bool IsAtColumn(unsigned int ColumnNumber) const;
 
-	/// <summary>Is the animator currently on the first frame of the sprite-sheet?</summary>
+	/// <summary>Is the animator currently on the first frame of a current row?</summary>
 	/// <returns>If the animator is on the first frame, true. Otherwise, false.</returns>
 	bool IsAtFirstFrame();
 
-	/// <summary>Is the animator currently on the last frame of the sprite-sheet?</summary>
+	/// <summary>Is the animator currently on the last frame of a current row?</summary>
 	/// <returns>If the animator is on the last frame, true. Otherwise, false.</returns>
 	bool IsAtLastFrame();
 
@@ -371,7 +371,7 @@ public:
 	/// <returns>If the animator is on the first row, true. Otherwise, false.</returns>
 	bool IsAtFirstRow() const;
 
-	/// <summary>Is the animator currently on the first column of the sprite-sheet?</summary>
+	/// <summary>Is the animator currently on the first column of a current row?</summary>
 	/// <returns>If the animator is on the first column, true. Otherwise, false.</returns>
 	bool IsAtFirstColumn() const;
 
@@ -379,12 +379,12 @@ public:
 	/// <returns>If the animator is on the last row, true. Otherwise, false.</returns>
 	bool IsAtLastRow() const;
 
-	/// <summary>Is the animator currently on the last column of the sprite-sheet?</summary>
+	/// <summary>Is the animator currently on the last column of a current row?</summary>
 	/// <returns>If the animator is on the last column, true. Otherwise, false.</returns>
 	bool IsAtLastColumn() const;
 
 	/// <summary>Is the animator currently playing?</summary>
-	/// <returns>If the animator is currently playing, true. Otherwise, false?</returns>
+	/// <returns>If the animator is currently playing, true. Otherwise, false.</returns>
 	bool IsPlaying() const;
 
 	/// <summary>Has the animator started playing?</summary>
