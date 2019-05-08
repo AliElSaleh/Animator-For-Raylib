@@ -359,6 +359,14 @@ public:
 	/// <returns>If the animator is on the column number specified, true. Otherwise, false.</returns>
 	bool IsAtColumn(unsigned int ColumnNumber) const;
 
+	/// <summary>Is the animator currently on the first frame of the sprite-sheet?</summary>
+	/// <returns>If the animator is on the first frame of the sprite-sheet, true. Otherwise, false.</returns>
+	bool IsAtFirstFrameOfSpriteSheet() const;
+
+	/// <summary>Is the animator currently on the last frame of the sprite-sheet?</summary>
+	/// <returns>If the animator is on the last frame of the sprite-sheet, true. Otherwise, false.</returns>
+	bool IsAtLastFrameOfSpriteSheet() const;
+
 	/// <summary>Is the animator currently on the first frame of a current row?</summary>
 	/// <returns>If the animator is on the first frame, true. Otherwise, false.</returns>
 	bool IsAtFirstFrame();

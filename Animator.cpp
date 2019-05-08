@@ -622,6 +622,16 @@ bool Animator::IsAtColumn(const unsigned int ColumnNumber) const
 	return false;
 }
 
+bool Animator::IsAtFirstFrameOfSpriteSheet() const
+{
+	return IsAtFirstRow() && IsAtFirstColumn();
+}
+
+bool Animator::IsAtLastFrameOfSpriteSheet() const
+{
+	return IsAtLastRow() && IsAtLastColumn();
+}
+
 bool Animator::IsAtFirstRow() const
 {
 	return CurrentRow == 0;
