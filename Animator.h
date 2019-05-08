@@ -375,11 +375,11 @@ public:
 
 	/// <summary>Is the animator currently on the first frame of a current row?</summary>
 	/// <returns>If the animator is on the first frame, true. Otherwise, false.</returns>
-	bool IsAtFirstFrame();
+	bool IsAtFirstFrame() const;
 
 	/// <summary>Is the animator currently on the last frame of a current row?</summary>
 	/// <returns>If the animator is on the last frame, true. Otherwise, false.</returns>
-	bool IsAtLastFrame();
+	bool IsAtLastFrame() const;
 
 	/// <summary>Is the animator currently on the first row of the sprite-sheet?</summary>
 	/// <returns>If the animator is on the first row, true. Otherwise, false.</returns>

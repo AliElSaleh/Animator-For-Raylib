@@ -525,7 +525,7 @@ void Animator::Play()
 	{
 		PlaybackPosition++;
 
-		// Update the time remianing
+		// Update the time remaining
 		if (!bIsAnimationFinished)
 			CountdownInFrames();
 
@@ -535,7 +535,7 @@ void Animator::Play()
 			// Reset playback position
 			PlaybackPosition = 0;
 
-			// Go to prevoius frame when reversing
+			// Go to previous frame when reversing
 			if (bReverse)
 				PreviousFrame();
 			// Go to next frame if not reversing
@@ -652,12 +652,12 @@ bool Animator::IsAtFirstColumn() const
 	return CurrentColumn == 0;
 }
 
-bool Animator::IsAtFirstFrame()
+bool Animator::IsAtFirstFrame() const
 {
 	return bContinuous ? IsAtFirstRow() && IsAtFirstColumn() : IsAtFirstColumn();
 }
 
-bool Animator::IsAtLastFrame()
+bool Animator::IsAtLastFrame() const
 {
 	return bContinuous ? IsAtLastRow() && IsAtLastColumn() : IsAtLastColumn();
 }
