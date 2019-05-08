@@ -105,13 +105,13 @@ void Animator::GoToRow(const unsigned int RowNumber)
 	{
 		FrameRec.y = (Rows - 1) * FrameHeight;
 		CurrentRow = Rows - 1;
-		TimeRemainingFramesCounter = GetTotalTimeInFrames();
+		TimeRemainingFramesCounter = float(GetTotalTimeInFrames());
 	}
 	else if (Rows >= 1)
 	{
 		FrameRec.y = RowNumber == 0 ? 0 : RowNumber * FrameHeight;
 		CurrentRow = RowNumber;
-		TimeRemainingFramesCounter = GetTotalTimeInFrames() - (RowNumber*Columns + Columns);
+		TimeRemainingFramesCounter = float(GetTotalTimeInFrames() - (RowNumber*Columns + Columns));
 	}
 }
 
@@ -122,14 +122,14 @@ void Animator::GoToColumn(const unsigned int ColumnNumber)
 		FrameRec.x = (Columns - 1) * FrameWidth;
 		CurrentColumn = Columns - 1;
 		CurrentFrame = Columns - 1;
-		TimeRemainingFramesCounter = GetTotalTimeInFrames() - CurrentRow*Columns;
+		TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - CurrentRow*Columns;
 	}
 	else if (Columns >= 1)
 	{
 		FrameRec.x = ColumnNumber == 0 ? 0 : ColumnNumber * FrameWidth;
 		CurrentColumn = ColumnNumber;
 		CurrentFrame = ColumnNumber;
-		TimeRemainingFramesCounter = GetTotalTimeInFrames() - CurrentRow*Columns - ColumnNumber;
+		TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - CurrentRow*Columns - ColumnNumber;
 	}
 }
 
@@ -138,7 +138,7 @@ void Animator::GoToFirstRow()
 	GoToRow(0);
 
 	// Update time remaining
-	TimeRemainingFramesCounter = GetTotalTimeInFrames() - CurrentColumn;
+	TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - CurrentColumn;
 }
 
 void Animator::GoToFirstColumn()
@@ -148,12 +148,12 @@ void Animator::GoToFirstColumn()
 		GoToColumn(0);
 
 		// Update time remaining
-		bContinuous ? TimeRemainingFramesCounter = GetTotalTimeInFrames() - Columns*CurrentRow : TimeRemainingFramesCounter = Columns;
+		bContinuous ? TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - Columns*CurrentRow : TimeRemainingFramesCounter = float(Columns);
 	}
 	else
 	{
 		GoToColumn(0);
-		TimeRemainingFramesCounter = bContinuous ? GetTotalTimeInFrames() - float(GetTotalTimeInFrames()) / Rows * CurrentRow : 0;
+		TimeRemainingFramesCounter = bContinuous ? float(GetTotalTimeInFrames()) - float(GetTotalTimeInFrames()) / Rows * CurrentRow : 0;
 	}
 }
 
@@ -162,7 +162,7 @@ void Animator::GoToLastRow()
 	GoToRow(Rows - 1);
 
 	// Update time remaining
-	bContinuous ? TimeRemainingFramesCounter = GetTotalTimeInFrames() - CurrentColumn - Columns*(Rows-1) : TimeRemainingFramesCounter = Columns - CurrentColumn;
+	bContinuous ? TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - CurrentColumn - Columns*(Rows-1) : TimeRemainingFramesCounter = float(Columns - CurrentColumn);
 }
 
 void Animator::GoToLastColumn()
@@ -177,23 +177,23 @@ void Animator::GoToLastColumn()
 			if (!bReverse)
 			{
 				if (Columns*CurrentRow != 0)
-					TimeRemainingFramesCounter = GetTotalTimeInFrames() - Columns*CurrentRow + Columns;
+					TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - Columns*CurrentRow + Columns;
 				else
-					TimeRemainingFramesCounter = GetTotalTimeInFrames() - Columns;
+					TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - Columns;
 			}
 			else
 			{
-				TimeRemainingFramesCounter = Columns*CurrentRow + Columns;
+				TimeRemainingFramesCounter = float(Columns*CurrentRow + Columns);
 			}
 
 		}
 		else
-			TimeRemainingFramesCounter = bIsAnimationFinished ? 0 : Columns;
+			TimeRemainingFramesCounter = bIsAnimationFinished ? 0.0f : float(Columns);
 	}
 	else
 	{
 		GoToColumn(Columns - 1);
-		TimeRemainingFramesCounter = GetTotalTimeInFrames() - CurrentRow * Columns - Columns;
+		TimeRemainingFramesCounter = float(GetTotalTimeInFrames()) - CurrentRow * Columns - Columns;
 	}
 }
 
@@ -363,7 +363,7 @@ void Animator::NextRow()
 		// Stay at end
 		else
 		{
-			FrameRec.y = Sprite.height;
+			FrameRec.y = float(Sprite.height);
 			CurrentRow = Rows - 1;
 		}
 
@@ -664,7 +664,7 @@ bool Animator::IsAtLastFrame() const
 
 void Animator::ResetTimer()
 {
-	TimeRemainingFramesCounter = GetTotalTimeInFrames();
+	TimeRemainingFramesCounter = float(GetTotalTimeInFrames());
 }
 
 Rectangle Animator::GetFrameRec() const
