@@ -211,11 +211,21 @@ void Animator::GoToFrame(const unsigned int FrameNumber)
 
 void Animator::GoToFirstFrame()
 {
-	GoToRow(0);
 	GoToColumn(0);
 }
 
 void Animator::GoToLastFrame()
+{
+	GoToColumn(Columns - 1);
+}
+
+void Animator::GoToFirstFrameOfSpriteSheet()
+{
+	GoToRow(0);
+	GoToColumn(0);
+}
+
+void Animator::GoToLastFrameOfSpriteSheet()
 {
 	GoToRow(Rows - 1);
 	GoToColumn(Columns - 1);

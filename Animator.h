@@ -267,11 +267,17 @@ public:
 	/// Jump to the last column.
 	void GoToLastColumn();
 
-	/// Jump to the first frame in the sprite sheet.
+	/// Jump to the first frame in the current row.
 	void GoToFirstFrame();
 
-	/// Jump to the last frame in the sprite sheet.
+	/// Jump to the last frame in the current row.
 	void GoToLastFrame();
+
+	/// Jump to the first frame in the sprite sheet.
+	void GoToFirstFrameOfSpriteSheet();
+
+	/// Jump to the last frame in the sprite sheet.
+	void GoToLastFrameOfSpriteSheet();
 
 	/// Jump to the next row index.
 	void NextRow();
