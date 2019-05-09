@@ -348,6 +348,11 @@ void Animator::PreviousFrame()
 	}
 }
 
+float Animator::Lerp(const float Start, const float End, const float Alpha)
+{
+	return (1.0f - Alpha) * Start + Alpha * End;
+}
+
 void Animator::NextRow()
 {
 	FrameRec.y += FrameHeight;
@@ -549,6 +554,20 @@ void Animator::Play()
 
 		//printf("Row: %u, Column: %u\n", CurrentRow, CurrentColumn);
 		bHasStartedPlaying = false;
+	}
+}
+
+void Animator::LerpAnim(const float Speed, const bool bConstant)
+{
+	PlaybackPosition++;
+	if (PlaybackPosition > GetFPS() / Framerate)
+	{
+		PlaybackPosition = 0;
+
+		if (bConstant)
+			FrameRec.x += Speed * GetFrameTime(); 
+		else
+			FrameRec.x = Lerp(FrameRec.x, Sprite.width, Speed * GetFrameTime());
 	}
 }
 

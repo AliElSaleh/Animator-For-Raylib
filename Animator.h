@@ -294,6 +294,8 @@ public:
 	/// Play animation from the current frame.
 	void Play();
 
+	void LerpAnim(float Speed, bool bConstant);
+
 	/// Start the animation when it has been paused or has been stopped.
 	void Start();
 
@@ -430,6 +432,8 @@ private:
 
 	/// Jumps to the previous frame in the sprite-sheet.
 	void PreviousFrame();
+
+	float Lerp(float Start, float End, float Alpha);
 
 	/// Sprite width / Total columns per row
 	float FrameWidth{};
